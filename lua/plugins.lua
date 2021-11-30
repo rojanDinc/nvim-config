@@ -157,5 +157,10 @@ return require('packer').startup(
 
     use "fatih/vim-go"
 
+    -- airline, status line plugin
+    use "vim-airline/vim-airline"
+    -- airline themes
+    use "vim-airline/vim-airline-themes"
+
   end
 )

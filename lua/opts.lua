@@ -39,3 +39,6 @@ vim.o.listchars = 'tab:┆·,trail:·,precedes:,extends:'
 vim.g.markdown_fenced_languages = {'sh', 'vim'}
 
 vim.g.termbufm_direction_cmd = 'new'
+
+-- airline options
+vim.g.airline_theme = 'deus'
