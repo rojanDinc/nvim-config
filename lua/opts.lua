@@ -39,6 +39,6 @@ vim.o.listchars = 'tab:┆·,trail:·,precedes:,extends:'
 vim.g.markdown_fenced_languages = {'sh', 'vim'}
 
 vim.g.termbufm_direction_cmd = 'new'
-
+vim.cmd('colorscheme codedark')
 -- airline options
-vim.g.airline_theme = 'deus'
+vim.g.airline_theme = 'codedark'

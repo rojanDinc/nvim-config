@@ -1,6 +1,6 @@
 vim.cmd('packadd packer.nvim')
 
-return require('packer').startup(
+require('packer').startup(
 	function()
     -- package manager.
     use "wbthomason/packer.nvim"
@@ -16,6 +16,8 @@ return require('packer').startup(
       run = ":TSUpdate"
     }
 
+    use 'p00f/nvim-ts-rainbow'
+
     -- pretty status line.
     use "hoob3rt/lualine.nvim"
 
@@ -30,91 +32,6 @@ return require('packer').startup(
           hl = "SpellBad",
           captures = {"comment"} -- set to {} to spellcheck everything
         }
-      end
-    }
-
-        -- formatter tool for various languages.
-    use {
-      "mhartington/formatter.nvim",
-      config = function()
-        local formatter = require("formatter")
-        formatter.setup(
-          {
-            logging = false,
-            filetype = {
-              go = {
-                function()
-                  return {
-                    exe = "golines",
-                    args = {},
-                    stdin = false
-                  }
-                end,
-                function()
-                  return {
-                    exe = "goimports",
-                    args = {"-local", '"$(go list -m)"'},
-                    stdin = true
-                  }
-                end,
-                function()
-                  return {
-                    exe = "gofumpt",
-                    args = {"-s", "-extra"},
-                    stdin = true
-                  }
-                end,
-                function()
-                  return {
-                    exe = "gci",
-                    args = {"-local", '"$(go list -m)"', "-w"},
-                    stdin = false
-                  }
-                end
-              },
-              rust = {
-                -- Rustfmt
-                function()
-                  return {
-                    exe = "rustfmt",
-                    args = {"--emit=stdout"},
-                    stdin = true
-                  }
-                end
-              },
-              sh = {
-                -- Shell Script Formatter
-                function()
-                  return {
-                    exe = "shfmt",
-                    args = {"-i", 2},
-                    stdin = true
-                  }
-                end
-              },
-              lua = {
-                -- luafmt
-                function()
-                  return {
-                    exe = "luafmt",
-                    args = {"--indent-count", 2, "--stdin"},
-                    stdin = true
-                  }
-                end
-              },
-              markdown = {
-                -- markdownfmt
-                function()
-                  return {
-                    exe = "markdownfmt",
-                    args = {"-w"},
-                    stdin = false
-                  }
-                end
-              }
-            }
-          }
-        )
       end
     }
 
@@ -136,6 +53,11 @@ return require('packer').startup(
       'williamboman/nvim-lsp-installer',
     }
 
+    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    use 'L3MON4D3/LuaSnip' -- Snippets plugin
+
     -- gitgutter style plugin.
     use "mhinz/vim-signify"
 
@@ -155,12 +77,38 @@ return require('packer').startup(
 
     use "tpope/vim-fugitive"
 
-    use "fatih/vim-go"
-
     -- airline, status line plugin
     use "vim-airline/vim-airline"
     -- airline themes
     use "vim-airline/vim-airline-themes"
 
+    -- visual studio code dark theme
+    use "tomasiser/vim-code-dark"
+
+    use "preservim/nerdtree"
+
   end
 )
+
+-- treesitter
+require("nvim-treesitter.configs").setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+    colors = {
+      'royalblue3',
+      'darkorange3',
+      'seagreen3',
+    },
+    termcolors = {
+      'LightBlue',
+      'Yellow',
+      'Magenta',
+    },
+  },
+}
