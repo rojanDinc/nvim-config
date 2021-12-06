@@ -85,7 +85,7 @@ require('packer').startup(
     -- visual studio code dark theme
     use "tomasiser/vim-code-dark"
 
-    use "preservim/nerdtree"
+    --use "preservim/nerdtree"
 
   end
 )
@@ -111,4 +111,11 @@ require("nvim-treesitter.configs").setup {
       'Magenta',
     },
   },
+}
+
+-- telescope
+require('telescope').setup {
+  defaults = {
+    file_ignore_patterns = { "node_modules" }
+  }
 }
