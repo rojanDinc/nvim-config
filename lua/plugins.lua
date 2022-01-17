@@ -85,8 +85,39 @@ require('packer').startup(
     -- visual studio code dark theme
     use "tomasiser/vim-code-dark"
 
-    --use "preservim/nerdtree"
+    -- formatting
+    use {
+      "mhartington/formatter.nvim",
+      config = function()
+        local formatter = require("formatter")
 
+        formatter.setup(
+          {
+            logging = false,
+            filetype = {
+              go = {
+                function()
+                  return {
+                    exe = "gofmt",
+                    args = {"-w"},
+                    stdin = false
+                  }
+                end
+              },
+              javascript = {
+                function()
+                  return {
+                    exe = "npm fmt",
+                    args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
+                    stdin = true
+                  }
+                end
+              },
+            }
+          }
+        )
+      end
+    }
   end
 )
 
@@ -122,3 +153,10 @@ require('telescope').setup {
 
 -- comment plugin
 require('nvim_comment').setup()
+
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.go Format
+augroup END
+]], true)
