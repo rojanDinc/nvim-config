@@ -29,8 +29,8 @@ vim.bo.autoindent = true
 vim.o.expandtab = true
 vim.bo.expandtab = true
 
-vim.g.mapleader = ' '
-vim.b.mapleader = ' '
+vim.g.mapleader = ','
+vim.b.mapleader = ','
 
 vim.cmd('language en_US.utf-8')
 vim.wo.list = true
