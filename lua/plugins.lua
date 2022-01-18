@@ -99,8 +99,8 @@ require('packer').startup(
                 function()
                   return {
                     exe = "gofmt",
-                    args = {"-w"},
-                    stdin = false
+                    args = { vim.api.nvim_buf_get_name(0) },
+                    stdin = true
                   }
                 end
               },
@@ -157,6 +157,6 @@ require('nvim_comment').setup()
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.go Format
+  autocmd BufWritePost *.go FormatWrite
 augroup END
 ]], true)
