@@ -15,3 +15,6 @@ vim.api.nvim_set_keymap('n', '<Leader>gd', "<CMD>Telescope lsp_definitions<CR>",
 vim.api.nvim_set_keymap('n', '<Leader>gr', "<CMD>Telescope lsp_references<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>gi', "<CMD>Telescope lsp_implementations<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>gtd', "<CMD>Telescope lsp_type_definitions<CR>", { noremap = true, silent = true})
+
+-- LSP
+vim.api.nvim_set_keymap('n', '<Leader>ft', '<CMD>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
