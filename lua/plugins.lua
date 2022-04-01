@@ -118,6 +118,9 @@ require('packer').startup(
         )
       end
     }
+
+    -- base64 encoding/decoding
+    use "christianrondeau/vim-base64"
   end
 )
 
