@@ -32,7 +32,6 @@ vim.bo.expandtab = true
 vim.g.mapleader = ','
 vim.b.mapleader = ','
 
-vim.cmd('language en_US.utf-8')
 vim.wo.list = true
 vim.o.listchars = 'tab:┆·,trail:·,precedes:,extends:'
 
