@@ -126,7 +126,7 @@ require('packer').startup(
 
 -- treesitter
 require("nvim-treesitter.configs").setup {
-  ensure_installed = "maintained",
+  ensure_installed = { "lua", "go" },
   highlight = {
     enable = true
   },
