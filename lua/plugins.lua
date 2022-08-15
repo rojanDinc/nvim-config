@@ -121,6 +121,11 @@ require('packer').startup(
 
     -- base64 encoding/decoding
     use "christianrondeau/vim-base64"
+
+    -- puml
+    use "weirongxu/plantuml-previewer.vim"
+    use "tyru/open-browser.vim"
+    use "aklt/plantuml-syntax"
   end
 )
 
