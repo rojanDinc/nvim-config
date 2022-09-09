@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
-
+local util = require('lspconfig.util')
 -- nvim-lsp-installer
 local lsp_installer = require('nvim-lsp-installer')
 -- Register a handler that will be called for all installed servers.
@@ -56,15 +56,18 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { "gopls", "tsserver", "rust-analyzer" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    single_file_support = true,
-    capabilities = capabilities,
-  }
+  if (lsp ~= "rust-analyzer")
+  then
+    nvim_lsp[lsp].setup {
+      -- on_attach = my_custom_on_attach,
+      on_attach = on_attach,
+      flags = {
+        debounce_text_changes = 150,
+      },
+      single_file_support = true,
+      capabilities = capabilities,
+    }
+  end
 end
 
 -- Set completeopt to have a better completion experience
