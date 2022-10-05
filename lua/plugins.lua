@@ -98,7 +98,7 @@ require('packer').startup(
                 function()
                   return {
                     exe = "gofmt",
-                    args = { vim.api.nvim_buf_get_name(0) },
+                    args = { vim.api.nvim_buf_get_name(0), "-w" },
                     stdin = true
                   }
                 end
