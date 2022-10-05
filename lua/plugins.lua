@@ -125,6 +125,14 @@ require('packer').startup(
     use "weirongxu/plantuml-previewer.vim"
     use "tyru/open-browser.vim"
     use "aklt/plantuml-syntax"
+
+    -- nvim-dap debugging
+    use "mfussenegger/nvim-dap"
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+    -- dap adapters
+    use 'leoluz/nvim-dap-go'
+
   end
 )
 
