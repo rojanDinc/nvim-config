@@ -41,3 +41,4 @@ vim.g.termbufm_direction_cmd = 'new'
 vim.cmd('colorscheme codedark')
 -- airline options
 vim.g.airline_theme = 'codedark'
+vim.o.signcolumn = 'yes'
