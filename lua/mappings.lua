@@ -6,7 +6,7 @@ vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { noremap = true, silent = true}
 
 -- Telescope
 vim.api.nvim_set_keymap('n', '<Leader>ff', "<CMD>Telescope find_files<CR>", { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fb', "<CMD>Telescope file_browser<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fb', "<CMD>Explore<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fg', "<CMD>Telescope live_grep<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fbu', "<CMD>Telescope buffers<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fh', "<CMD>Telescope help_tags<CR>", { noremap = true, silent = true})
