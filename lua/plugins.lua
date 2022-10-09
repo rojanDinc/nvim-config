@@ -133,6 +133,9 @@ require('packer').startup(
     -- dap adapters
     use 'leoluz/nvim-dap-go'
 
+    -- Tester
+    use 'vim-test/vim-test'
+
   end
 )
 
