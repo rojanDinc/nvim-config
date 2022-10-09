@@ -20,6 +20,9 @@ vim.api.nvim_set_keymap('n', '<Leader>gtd', "<CMD>Telescope lsp_type_definitions
 vim.api.nvim_set_keymap('n', '<Leader>ft', '<CMD>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>e', '<CMD>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>cw', '<CMD>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
+
 
 -- DAP
 vim.api.nvim_set_keymap( "n", "<F4>", "<CMD>lua require('dapui').toggle()<CR>", { noremap = true, silent = true } )
