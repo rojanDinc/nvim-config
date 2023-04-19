@@ -1,11 +1,11 @@
 vim.cmd('packadd packer.nvim')
 
 require('packer').startup(
-	function()
+  function()
     -- package manager.
     use "wbthomason/packer.nvim"
 
-		use 'romainl/vim-cool'
+    use 'romainl/vim-cool'
 
     use 'prettier/vim-prettier'
     --use 'sheerun/vim-polyglot'
@@ -21,16 +21,13 @@ require('packer').startup(
     -- pretty status line.
     use "hoob3rt/lualine.nvim"
 
-    -- in editor terminal.
-    use "kassio/neoterm"
-    
     -- spellcheck.
     use {
       "lewis6991/spellsitter.nvim",
       config = function()
         require("spellsitter").setup {
           hl = "SpellBad",
-          captures = {"comment"} -- set to {} to spellcheck everything
+          captures = { "comment" } -- set to {} to spellcheck everything
         }
       end
     }
@@ -41,22 +38,27 @@ require('packer').startup(
     -- commenter.
     use "terrortylor/nvim-comment"
 
-    -- language agnostic linter.
-    use "mfussenegger/nvim-lint"
-
-    -- language agnostic in editor test runner.
-    use "janko/vim-test"
-
-    -- lsp installer
     use {
-      'neovim/nvim-lspconfig',
-      'williamboman/nvim-lsp-installer',
-    }
+      'VonHeikemen/lsp-zero.nvim',
+      requires = {
+        -- LSP Support
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
 
-    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    use 'L3MON4D3/LuaSnip' -- Snippets plugin
+        -- Autocompletion
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+
+        -- Snippets
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+      }
+    }
 
     -- gitgutter style plugin.
     use "mhinz/vim-signify"
@@ -84,39 +86,14 @@ require('packer').startup(
     -- visual studio code dark theme
     use "tomasiser/vim-code-dark"
 
-    -- formatting
-    use {
-      "mhartington/formatter.nvim",
-      config = function()
-        local formatter = require("formatter")
+    -- sonokai theme
+    use "sainnhe/sonokai"
 
-        formatter.setup(
-          {
-            logging = false,
-            filetype = {
-              go = {
-                function()
-                  return {
-                    exe = "gofmt",
-                    args = { vim.api.nvim_buf_get_name(0), "-w" },
-                    stdin = true
-                  }
-                end
-              },
-              javascript = {
-                function()
-                  return {
-                    exe = "npm fmt",
-                    args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-                    stdin = true
-                  }
-                end
-              },
-            }
-          }
-        )
-      end
-    }
+    -- gruvbox theme
+    use "morhetz/gruvbox"
+
+    -- formatting
+    use "mhartington/formatter.nvim"
 
     -- base64 encoding/decoding
     use "christianrondeau/vim-base64"
@@ -128,13 +105,22 @@ require('packer').startup(
 
     -- nvim-dap debugging
     use "mfussenegger/nvim-dap"
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
     -- dap adapters
     use 'leoluz/nvim-dap-go'
 
     -- Tester
     use 'vim-test/vim-test'
+
+    -- github-dark theme
+    use '1612492/github.vim'
+
+    -- Markdown preview
+    use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+    })
 
   end
 )
@@ -165,16 +151,9 @@ require("nvim-treesitter.configs").setup {
 -- telescope
 require('telescope').setup {
   defaults = {
-    file_ignore_patterns = { "node_modules" }
+    file_ignore_patterns = { "node_modules", "tmp" }
   }
 }
 
 -- comment plugin
 require('nvim_comment').setup()
-
-vim.api.nvim_exec([[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.go FormatWrite
-augroup END
-]], true)

@@ -8,7 +8,7 @@ vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<Leader>ff', "<CMD>Telescope find_files<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fb', "<CMD>Explore<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fg', "<CMD>Telescope live_grep<CR>", { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fbu', "<CMD>Telescope buffers<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>ls', "<CMD>Telescope buffers<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fh', "<CMD>Telescope help_tags<CR>", { noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', '<Leader>gd', "<CMD>Telescope lsp_definitions<CR>", { noremap = true, silent = true})
@@ -17,8 +17,8 @@ vim.api.nvim_set_keymap('n', '<Leader>gi', "<CMD>Telescope lsp_implementations<C
 vim.api.nvim_set_keymap('n', '<Leader>gtd', "<CMD>Telescope lsp_type_definitions<CR>", { noremap = true, silent = true})
 
 -- LSP
-vim.api.nvim_set_keymap('n', '<Leader>ft', '<CMD>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>e', '<CMD>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>ft', '<CMD>lua vim.lsp.buf.format({async = false})<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>e', '<CMD>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>cw', '<CMD>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })

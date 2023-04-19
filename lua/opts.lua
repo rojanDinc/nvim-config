@@ -4,7 +4,7 @@ vim.o.splitbelow = true
 vim.o.ignorecase = true
 vim.o.hlsearch = true
 --vim.o.background = 'dark'
---vim.o.termguicolors = true
+vim.o.termguicolors=false -- This needs to be false when using MacOS Terminal
 vim.o.hidden = true
 vim.o.updatetime = 300
 vim.o.scrolloff = 5
@@ -35,10 +35,24 @@ vim.b.mapleader = ','
 vim.wo.list = true
 vim.o.listchars = 'tab:┆·,trail:·,precedes:,extends:'
 
-vim.g.markdown_fenced_languages = {'sh', 'vim'}
+vim.g.markdown_fenced_languages = { 'sh', 'vim' }
 
 vim.g.termbufm_direction_cmd = 'new'
+-- themeing
+--vim.g.sonokai_style = 'maia'
+--vim.g.sonokai_better_performance = 1
 vim.cmd('colorscheme codedark')
 -- airline options
 vim.g.airline_theme = 'codedark'
 vim.o.signcolumn = 'yes'
+
+-- format on save
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*",
+  callback = function()
+    if next(vim.lsp.get_active_clients()) ~= nil then
+      vim.cmd("FormatWrite")
+      return
+    end
+  end,
+})
