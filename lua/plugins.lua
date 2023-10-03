@@ -122,6 +122,9 @@ require('packer').startup(
       run = function() vim.fn["mkdp#util#install"]() end,
     })
 
+    -- Indentation plugin
+    use "tpope/vim-sleuth"
+
   end
 )
 
