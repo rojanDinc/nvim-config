@@ -47,12 +47,12 @@ vim.g.airline_theme = 'codedark'
 vim.o.signcolumn = 'yes'
 
 -- format on save
-vim.api.nvim_create_autocmd("BufWritePost", {
+vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
-    if next(vim.lsp.get_active_clients()) ~= nil then
-      vim.cmd("FormatWrite")
-      return
+    local client_length = vim.lsp.get_active_clients()
+    if #client_length > 0 then
+      vim.lsp.buf.format{async=false}
     end
   end,
 })
