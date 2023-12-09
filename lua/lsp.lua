@@ -1,21 +1,26 @@
 local servers = { "gopls", "golangci_lint_ls", "denols", "tsserver" }
 local lsp = require('lsp-zero')
 local util = require('lspconfig.util')
-
+local masoncfg = require('mason-lspconfig')
 lsp.preset('recommended')
 
-lsp.ensure_installed(servers)
-
-lsp.configure('denols', {
-  root_dir = util.root_pattern("deno.json", "deno.jsonc")
+require('mason').setup({})
+masoncfg.setup({
+  ensure_installed = server,
+  handlers = {
+    lsp.default_setup
+  }
 })
 
-lsp.configure('tsserver', {
-  root_dir = util.root_pattern("package.json")
-})
-
-lsp.nvim_workspace()
 lsp.setup()
+
+--lsp.configure('denols', {
+--  root_dir = util.root_pattern("deno.json", "deno.jsonc")
+--})
+--
+--lsp.configure('tsserver', {
+--  root_dir = util.root_pattern("package.json")
+--})
 
 vim.diagnostic.config({
   virtual_text = true,
@@ -31,6 +36,8 @@ local cmp = require('cmp')
 cmp.setup({
   mapping = {
     ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<Tab>'] = cmp.mapping.select_next_item(),  
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
   },
   sources = {
     {name = 'path'},
