@@ -6,7 +6,7 @@ lsp.preset('recommended')
 
 require('mason').setup({})
 masoncfg.setup({
-  ensure_installed = server,
+  ensure_installed = servers,
   handlers = {
     lsp.default_setup
   }
